@@ -25,6 +25,10 @@ public class KyselyhommaApplication {
 			QuestionnaireRepository questionnaireRepo,
 			AnswerRepository answerRepo){
 		return (args) -> {
+			//Poistetaan vanhat uuden käynnistyksen alussa
+			questionnaireRepo.deleteAll();
+			questionRepo.deleteAll();
+
 			log.info("insert a test question and questionnaire");
 			//Luodaan kysely, jolle annetaan parametreina otsikko ja kuvaus
 			Questionnaire questionnaire = new Questionnaire("Henkilökysely", "Tämä on henkilötietokysely");

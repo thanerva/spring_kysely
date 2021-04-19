@@ -25,18 +25,21 @@ public class KyselyhommaApplication {
 			QuestionnaireRepository questionnaireRepo,
 			AnswerRepository answerRepo){
 		return (args) -> {
-			//Poistetaan vanhat uuden käynnistyksen alussa
-			questionnaireRepo.deleteAll();
+			//poistetaan vanhat
 			questionRepo.deleteAll();
+			questionnaireRepo.deleteAll();
+
 
 			log.info("insert a test question and questionnaire");
 			//Luodaan kysely, jolle annetaan parametreina otsikko ja kuvaus
 			Questionnaire questionnaire = new Questionnaire("Henkilökysely", "Tämä on henkilötietokysely");
 			Questionnaire questionnaire1 = new Questionnaire("Harrastuskysely", "kysellään harrastuksia");
+			questionnaireRepo.save(questionnaire);
+			questionnaireRepo.save(questionnaire1);
 
-			//Tallennetaan kysely kantaan ja tulostetaan siitä tietoja
-			log.info("FIRST QUESTIONNAIRE ID: " + questionnaireRepo.save(questionnaire).getQuestionnaireId().toString());
-			log.info("SCND QUESTIONNAIRE ID: " + questionnaireRepo.save(questionnaire1).getQuestionnaireId().toString());
+			//Tallennetaan kysely kantaan ja tulostetaan siitä tietoja plus poistetaan vanhat
+			//log.info("FIRST QUESTIONNAIRE ID: " + questionnaireRepo.save(questionnaire).getQuestionnaireId().toString());
+			//log.info("SCND QUESTIONNAIRE ID: " + questionnaireRepo.save(questionnaire1).getQuestionnaireId().toString());
 
 
 			//testi kysely

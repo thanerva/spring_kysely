@@ -85,7 +85,7 @@ public class QuestionnaireController {
                              @RequestParam(value="answerText") String answerText) {
         Question question = questionRepo.findById(questionId).get();
         answerRepo.save(new Answer(answerText, question));
-        return "redirect:questionnairelist";
+        return "redirect:/questionnairelist";
     }
     @GetMapping(value = "/deletequestion/{id}")
     public String deleteQuestion(@PathVariable("id") Long questionId, Model model) {

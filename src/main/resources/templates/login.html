@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bookstore</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}" />
+    <style type="text/css">
+.centered {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+</style>
+</head>
+<body>
+<div class="container centered">
+    <h1>Kyselyhässäkkä</h1>
+    <h2>Log in</h2>
+    <div class="form-group">
+
+        <div th:if="${param.error}">Invalid username or password.</div>
+        <form th:action="@{/login}" method="post">
+            <div>
+                <label> Username: <input class="form-control" type="text"
+                                         name="username" />
+                </label>
+            </div>
+            <div>
+                <label> Password: <input class="form-control"
+                                         type="password" name="password" />
+                </label>
+            </div>
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <div>
+                <button class="btn btn-primary" type="submit">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

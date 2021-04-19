@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Kyselypalvelu</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,6 +17,11 @@
         <a class="btn btn-primary btn-lg" th:href="@{/newquestionnaire}" role="button">Add a questionnaire</a>
     </p>
 </div>
+<div class="d-flex flex-sm-row-reverse" style="padding-right: 300px">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+    </form>
+</div>
 <div class="container">
 
     <th:block th:each="questionnaire : ${questionnaires}">
@@ -26,7 +32,7 @@
                     <h2 th:text="${questionnaire.title}"></h2>
                     <p th:text="${questionnaire.description}"></p>
                     <a th:href="@{/deletequestionnaire/{id}(id=${questionnaire.questionnaireId})}"
-                    class="btn btn-xs btn-danger">Delete questionnaire</a>
+                    class="btn btn-xs btn-danger" sec:authorize="hasAuthority('ADMIN')">Delete questionnaire</a>
                 </th>
 
                 <th scope="col" class="w-25 p-3">Questions</th>
@@ -37,8 +43,8 @@
             <tbody>
             <tr th:each="question : ${questionnaire.questions}">
                 <th>
-                    <a th:href="@{/deletequestion/{id}(id=${question.questionId})}"
-                       class="btn btn-xs btn-danger">Delete question</a>
+                    <a th:href="@{/addanswer/{id}(id=${question.questionId})}"
+                       class="btn btn-xs btn-success">Answer</a>
                 </th>
                 <td th:text="${question.questionText}"></td>
                 <td>
@@ -47,8 +53,8 @@
                     </p>
                 </td>
                 <td>
-                    <a th:href="@{/addanswer/{id}(id=${question.questionId})}"
-                       class="btn btn-xs btn-success">Answer</a>
+                    <a th:href="@{/deletequestion/{id}(id=${question.questionId})}"
+                       class="btn btn-xs btn-danger" sec:authorize="hasAuthority('ADMIN')">Delete question</a>
                 </td>
             </tr>
             </tbody>

@@ -2,6 +2,7 @@ package com.example.kyselyhomma.web;
 
 import com.example.kyselyhomma.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -69,6 +70,7 @@ public class QuestionnaireController {
         return "redirect:questionnairelist";
     }
     @GetMapping(value = "/deletequestionnaire/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteQuestionnaire(@PathVariable("id") Long questionnaireId, Model model) {
         questionnaireRepo.deleteById(questionnaireId);
 
@@ -88,10 +90,17 @@ public class QuestionnaireController {
         return "redirect:/questionnairelist";
     }
     @GetMapping(value = "/deletequestion/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteQuestion(@PathVariable("id") Long questionId, Model model) {
         questionRepo.deleteById(questionId);
         return "redirect:../questionnairelist";
     }
+
+    @GetMapping(value="/login")
+    public String loginPage() {
+        return "login";
+    }
+
 
 
 

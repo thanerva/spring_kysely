@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}">
+    <title>Kyselyapp</title>
+</head>
+<body>
+<div>
+    <h1>Luo uusi kysely</h1>
+    <form th:object="${questionnaire}" th:action="@{/savequestionnaire}" action="#" method="post">
+
+        <label for="title">Kyselyn otsikko</label>
+        <input id="title" type="text" th:field="*{title}" />
+
+        <label for="description">Kyselyn kuvaus</label>
+        <input id="description" type="text" th:field="*{description}" />
+
+        <div th:each="question, itemStat : *{questions}">
+            <p>Kysymys:</p>
+            <input type="text" th:field="*{questions[__${itemStat.index}__].questionText}" />
+
+        </div>
+        <button type="submit" name="addQuestion">+ Lisää kysymys</button>
+        <input type="submit" value="Tallenna" />
+    </form>
+</div>
+
+</body>
+</html>

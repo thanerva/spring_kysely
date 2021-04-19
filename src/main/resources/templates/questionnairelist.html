@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kyselypalvelu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}">
+</head>
+<body>
+<div class="jumbotron" align="center">
+    <h1 class="display-3">Kyselyäpp</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for
+        calling extra attention to featured content or information.</p>
+    <hr class="my-2">
+    <p>It uses utility classes for typography and
+        spacing to space content out within the larger container.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" th:href="@{/newquestionnaire}" role="button">Add a questionnaire</a>
+    </p>
+</div>
+<div class="container">
+
+    <th:block th:each="questionnaire : ${questionnaires}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" class="w-25 p-3">
+                    <h2 th:text="${questionnaire.title}"></h2>
+                    <p th:text="${questionnaire.description}"></p>
+                    <a th:href="@{/deletequestionnaire/{id}(id=${questionnaire.questionnaireId})}"
+                    class="btn btn-xs btn-danger">Delete questionnaire</a>
+                </th>
+
+                <th scope="col" class="w-25 p-3">Questions</th>
+                <th scope="col" class="w-25 p-3">Answers</th>
+                <th scope="col" class="w-25 p-3">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="question : ${questionnaire.questions}">
+                <th>
+                    <a th:href="@{/deletequestion/{id}(id=${question.questionId})}"
+                       class="btn btn-xs btn-danger">Delete question</a>
+                </th>
+                <td th:text="${question.questionText}"></td>
+                <td>
+                    <p th:each="answer: ${question.answers}">
+                        <span th:text="${answer.answerText}"></span>
+                    </p>
+                </td>
+                <td>
+                    <a th:href="@{/addanswer/{id}(id=${question.questionId})}"
+                       class="btn btn-xs btn-success">Answer</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </th:block>
+</div>
+</body>
+</html>

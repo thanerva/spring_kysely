@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}">
+    <title>Add Answer</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h2>Add Answer to Question</h2>
+    <form th:action="@{/saveanswer}" action="#" method="post">
+        <input type="hidden" th:name="questionId" th:value="${question}" />
+        <label for="answer">Enter answer: </label>
+        <input id="answer" type="text" th:name="answerText" />
+        <br>
+        <input class="btn btn-outline-success" type="submit" value="Save">
+    </form>
+
+</div>
+</body>
+</html>

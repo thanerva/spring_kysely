@@ -7,23 +7,28 @@
     <title>Kyselyapp</title>
 </head>
 <body>
-<div>
+<div class="container-fluid">
     <h1>Luo uusi kysely</h1>
     <form th:object="${questionnaire}" th:action="@{/savequestionnaire}" action="#" method="post">
 
         <label for="title">Kyselyn otsikko</label>
+        <br>
         <input id="title" type="text" th:field="*{title}" />
+        <div style="clear: both; display: block; height: 10px;"></div>
 
         <label for="description">Kyselyn kuvaus</label>
+        <br>
         <input id="description" type="text" th:field="*{description}" />
+        <div style="clear: both; display: block; height: 10px;"></div>
 
         <div th:each="question, itemStat : *{questions}">
             <p>Kysymys:</p>
             <input type="text" th:field="*{questions[__${itemStat.index}__].questionText}" />
 
         </div>
-        <button type="submit" name="addQuestion">+ Lisää kysymys</button>
-        <input type="submit" value="Tallenna" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+        <button class="btn btn-info" type="submit" name="addQuestion">+ Lisää kysymys</button>
+        <input class="btn btn-outline-success" type="submit" value="Tallenna" />
     </form>
 </div>
 

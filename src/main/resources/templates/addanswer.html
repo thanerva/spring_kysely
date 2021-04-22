@@ -8,12 +8,14 @@
 </head>
 <body>
 <div class="container-fluid">
-    <h2>Add Answer to Question</h2>
+    <h2>Add your answer</h2>
     <form th:action="@{/saveanswer}" action="#" method="post">
         <input type="hidden" th:name="questionId" th:value="${question}" />
-        <label for="answer">Enter answer: </label>
+        <label for="answer">Here : </label>
         <input id="answer" type="text" th:name="answerText" />
-        <br>
+
+        <div style="clear: both; display: block; height: 10px;"></div>
+
         <input class="btn btn-outline-success" type="submit" value="Save">
     </form>
 

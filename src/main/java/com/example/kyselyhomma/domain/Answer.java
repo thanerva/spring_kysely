@@ -14,7 +14,6 @@ public class Answer {
 
     // relaatiot
     @ManyToOne
-    // @JsonIgnoreProperties - vältetään tällä loputtomat loopit kahdensuuntaisten relaatioiden JSON serialisaatioissa
     @JsonIgnore
     @JoinColumn(name = "questionId")
     private Question question;

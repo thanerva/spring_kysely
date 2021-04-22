@@ -14,7 +14,7 @@
     <hr class="my-2">
     <br>
     <p class="lead">
-        <a class="btn btn-primary btn-lg" th:href="@{/newquestionnaire}" role="button">Add a questionnaire</a>
+        <a class="btn btn-primary btn-lg" th:href="@{/newquestionnaire}" sec:authorize="hasAuthority('ADMIN')" role="button">Add a questionnaire</a>
     </p>
 </div>
 <div class="d-flex flex-sm-row-reverse" style="padding-right: 300px">
